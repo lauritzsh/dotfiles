@@ -1,0 +1,14 @@
+export CODE=~/Developer
+export DOTFILES=$CODE/dotfiles
+export ZSH=$DOTFILES/zsh
+
+export GOPATH=$CODE/go
+
+export VISUAL=vim
+export EDITOR=$VISUAL
+
+export CLICOLOR=true
+
+export CDPATH=.:$HOME:$CODE
+
+fpath=("$ZSH/functions" $fpath)

@@ -1,0 +1,31 @@
+[user]
+	email = mail@lauritz.me
+	name = Lauritz Hilsøe
+[credential]
+	helper = osxkeychain
+[alias]
+	aa  = add --all
+	cam = commit -am
+	cim = commit -m
+	co  = checkout
+	db  = "!f() { git push origin :refs/heads/$1 && git branch -D $1; }; f"
+	fax = "!f() { git add --all && git commit --amend --no-edit; }; f"
+	fix = commit --amend --no-edit
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit
+	reb = "!f() { git rebase -i HEAD~$1; }; f"
+[color]
+	ui = true
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore
+[apply]
+	whitespace = nowarn
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = true
+[hub]
+	host = github.itu.dk
+	host = gitlab.com

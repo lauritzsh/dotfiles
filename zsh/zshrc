@@ -1,0 +1,21 @@
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman/:/usr/local/opt/findutils/share/man/:$MANPATH"
+
+# Don't bother display the execution time
+PURE_CMD_MAX_EXEC_TIME=999999
+PURE_PROMPT_SYMBOL=$
+
+source $ZSH/antigen/antigen.zsh
+
+antigen bundle brew
+antigen bundle brew-cask
+antigen bundle felixr/docker-zsh-completion
+antigen bundle mafredri/zsh-async
+antigen bundle sindresorhus/pure
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
+
+for plugin in $ZSH/plugins/*; do
+  source $plugin
+done
