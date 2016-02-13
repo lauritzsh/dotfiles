@@ -1,6 +1,6 @@
 filetype off
 
-set runtimepath+=/Users/Lauritz/.vim/bundle/neobundle.vim/
+set runtimepath^=~/.vim/bundle/neobundle.vim/
 call neobundle#begin(expand('~/.vim/bundle'))
 
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -15,7 +15,7 @@ NeoBundle 'othree/html5.vim'
 NeoBundle 'Shougo/neocomplete.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'ervandew/supertab'
-NeoBundle 'scrooloose/syntastic', {'build':{'mac':'npm i -g eslint babel-eslint eslint-plugin-react'}}
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'junegunn/vim-easy-align'
 NeoBundle 'tpope/vim-endwise'
@@ -23,13 +23,12 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'fatih/vim-go'
 NeoBundle 'digitaltoad/vim-jade'
 NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'jelera/vim-javascript-syntax'
 NeoBundle 'mxw/vim-jsx'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'jpalardy/vim-slime'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'darthmall/vim-vue'
-
-NeoBundleLazy 'jelera/vim-javascript-syntax', {'filetypes':['javascript']}
 
 call neobundle#end()
 
