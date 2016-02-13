@@ -8,16 +8,6 @@ homebrew() {
   brew bundle &> /dev/null
 }
 
-node() {
-  echo "Installing Node"
-  brew install nvm &> /dev/null
-  mkdir -p ~/.nvm
-  cp $(brew --prefix nvm)/nvm-exec ~/.nvm/
-  source $(brew --prefix nvm)/nvm.sh
-  nvm install node &> /dev/null
-  nvm alias default node &> /dev/null
-}
-
 symlink() {
   echo "Symlinking files and folders"
   _symlink 'emacs.d'
@@ -65,7 +55,6 @@ if [ "$#" -eq 0 ] || [ "$1" == "-h" ]; then
   cat <<HELP
 Usage:
   homebrew     -- Install Homebrew and packages
-  node         -- Install Node with nvm
   symlink      -- Symlink dotfiles to \$HOME
   neobundle    -- Install NeoBundle for Vim
   change_shell -- Changes shell to Zsh
