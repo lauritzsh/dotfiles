@@ -1,35 +1,25 @@
 #!/usr/bin/env bash
 
-setup() {
-  homebrew       && \
-    symlink      && \
-    neobundle    && \
-    change_shell
-}
-
 homebrew() {
   echo "Installing Homebrew"
   echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
 
   brew tap Homebrew/bundle &> /dev/null
-  brew bundle # &> /dev/null
-  _done
+  brew bundle &> /dev/null
 }
 
 node() {
-  echo -n "Installing Node"
+  echo "Installing Node"
   brew install nvm &> /dev/null
   mkdir -p ~/.nvm
   cp $(brew --prefix nvm)/nvm-exec ~/.nvm/
   source $(brew --prefix nvm)/nvm.sh
   nvm install node &> /dev/null
   nvm alias default node &> /dev/null
-  _done
-}
 }
 
 symlink() {
-  echo -n "Symlinking files and folders"
+  echo "Symlinking files and folders"
   _symlink 'emacs.d'
   _symlink 'git/gitconfig'
   _symlink 'git/gitignore'
@@ -41,23 +31,20 @@ symlink() {
   _symlink 'vim/vimrc'
   _symlink 'zsh/zshenv'
   _symlink 'zsh/zshrc'
-  _done
 }
 
 neobundle() {
-  echo -n "Installing NeoBundle"
-  curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh &> /dev/null
+  echo "Installing NeoBundle"
+  curl -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
   sh ./install.sh &> /dev/null
-  rm -rf install.sh
-  _done
+  rm install.sh
 }
 
 change_shell() {
   echo "Changin shell to Zsh"
   sudo bash -c "echo '/usr/local/bin/zsh' >> /etc/shells"
   chsh -s /usr/local/bin/zsh &> /dev/null
-  echo -n "Changed shell"
-  _done
+  echo "Changed shell"
 }
 
 # Private functions
@@ -74,18 +61,9 @@ _symlink() {
   ln -nfs "$source" "$target"
 }
 
-_done() {
-  if [ $? -eq 0 ]; then
-    echo -e " \e[32m\u2714\e[0m"
-  else
-    echo -e " \e[31m\u2718\e[0m"
-  fi
-}
-
 if [ "$#" -eq 0 ] || [ "$1" == "-h" ]; then
   cat <<HELP
 Usage:
-  setup        -- Runs all scripts below
   homebrew     -- Install Homebrew and packages
   node         -- Install Node with nvm
   symlink      -- Symlink dotfiles to \$HOME
