@@ -2,7 +2,6 @@
 
 setup() {
   homebrew       && \
-    quicklook    && \
     symlink      && \
     neobundle    && \
     change_shell
@@ -27,11 +26,6 @@ node() {
   nvm alias default node &> /dev/null
   _done
 }
-
-quicklook() {
-  echo -n "Installing QuickLook plugins"
-  brew cask install qlcolorcode qlstephen qlmarkdown quicklook-json quicklook-csv betterzipql &> /dev/null
-  _done
 }
 
 symlink() {
@@ -94,7 +88,6 @@ Usage:
   setup        -- Runs all scripts below
   homebrew     -- Install Homebrew and packages
   node         -- Install Node with nvm
-  quicklook    -- Install QuickLook plugins
   symlink      -- Symlink dotfiles to \$HOME
   neobundle    -- Install NeoBundle for Vim
   change_shell -- Changes shell to Zsh

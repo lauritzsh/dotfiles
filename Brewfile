@@ -39,3 +39,11 @@ cask 'skype'
 cask 'sourcetree'
 cask 'textual'
 cask 'the-unarchiver'
+
+# Install QuickLook plugins
+cask 'betterzipql'
+cask 'qlcolorcode'
+cask 'qlmarkdown'
+cask 'qlstephen'
+cask 'quicklook-csv'
+cask 'quicklook-json'
