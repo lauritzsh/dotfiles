@@ -9,12 +9,15 @@ source $ZSH/antigen/antigen.zsh
 
 antigen bundle brew
 antigen bundle brew-cask
+antigen bundle git
 antigen bundle felixr/docker-zsh-completion
 antigen bundle mafredri/zsh-async
 antigen bundle sindresorhus/pure
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 antigen apply
+
+unalias g
 
 for plugin in $ZSH/plugins/*; do
   source $plugin
