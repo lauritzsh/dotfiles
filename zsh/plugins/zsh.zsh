@@ -18,6 +18,14 @@ function mcd() {
   mkdir -p "$1" && cd "$1";
 }
 
+function o() {
+  if [[ $# > 0 ]]; then
+    open $@
+  else
+    open .
+  fi
+}
+
 function dot() {
   if [[ "$#" == 0 ]]; then
     cat <<HELP
