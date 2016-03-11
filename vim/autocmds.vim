@@ -19,3 +19,6 @@ autocmd FileType scss setlocal shiftwidth=4 softtabstop=4
 
 " LaTeX
 autocmd BufRead,BufNewFile *.tex setlocal filetype=tex
+
+" Go
+autocmd BufRead,BufNewFile *.go setlocal noexpandtab shiftwidth=4 softtabstop=4
