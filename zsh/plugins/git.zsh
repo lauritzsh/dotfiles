@@ -4,6 +4,9 @@
 alias ga='gist -p -s -a -P -t txt'
 alias gta='gist -p -s -a -P -t'
 
+alias gf!='git commit -s -v --amend --no-edit'
+alias gfa!='git commit -a -s -v --amend --no-edit'
+
 # Functions
 function g() {
   if [[ $# > 0 ]]; then
