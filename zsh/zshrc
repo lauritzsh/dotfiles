@@ -22,3 +22,5 @@ unalias g
 for plugin in $ZSH/plugins/*; do
   source $plugin
 done
+
+compdef -d mcd
