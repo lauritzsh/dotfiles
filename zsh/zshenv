@@ -4,7 +4,7 @@ export ZSH=$DOTFILES/zsh
 
 export GOPATH=$CODE/go
 
-export VISUAL=vim
+export VISUAL=nvim
 export EDITOR=$VISUAL
 
 export CLICOLOR=true

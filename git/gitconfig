@@ -10,7 +10,7 @@
 [color]
 	ui = true
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [apply]
 	whitespace = nowarn

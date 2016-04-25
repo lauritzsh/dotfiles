@@ -17,10 +17,11 @@ symlink() {
   _symlink 'ruby/gemrc'
   _symlink 'ruby/rspec'
   _symlink 'tmux/tmux.conf'
-  _symlink 'vim'
-  _symlink 'vim/vimrc'
   _symlink 'zsh/zshenv'
   _symlink 'zsh/zshrc'
+
+  mkdir -p ~/.config
+  ln -nfs "$PWD/nvim" ~/.config/nvim
 }
 
 neobundle() {
