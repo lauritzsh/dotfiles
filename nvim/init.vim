@@ -3,6 +3,10 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'chriskempson/base16-vim'
 Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
+Plug 'derekwyatt/vim-scala'
+Plug 'Valloric/YouCompleteMe'
+Plug 'mattn/emmet-vim'
+Plug 'leafgarland/typescript-vim'
 
 call plug#end()
 
