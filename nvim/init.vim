@@ -63,3 +63,7 @@ set undofile
 
 " vim-airline
 let g:airline_powerline_fonts = 1
+
+" Markdown
+autocmd FileType markdown setlocal spell textwidth=100 colorcolumn=100
+autocmd FileType markdown let g:airline_section_warning=' '
