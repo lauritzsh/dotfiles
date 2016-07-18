@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 
 homebrew() {
-  echo "Installing Homebrew"
-  echo | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" &> /dev/null
+  echo 'To install Homebrew:'
+  echo '  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
 
-  brew tap Homebrew/bundle &> /dev/null
-  brew bundle &> /dev/null
+  echo
+  echo 'To install formulas and casks:'
+  echo '  brew tap Homebrew/bundle'
+  echo '  brew bundle'
 }
 
 symlink() {
@@ -24,11 +26,14 @@ symlink() {
   ln -nfs "$PWD/nvim" ~/.config/nvim
 }
 
-neobundle() {
-  echo "Installing NeoBundle"
-  curl -s https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh > install.sh
-  sh ./install.sh &> /dev/null
-  rm install.sh
+plug() {
+  echo "Installing vim-plug for NeoVim"
+  read -p "Did you remember to install NeoVim and symlink first? " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]
+  then
+    curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  fi
 }
 
 change_shell() {
@@ -55,9 +60,9 @@ _symlink() {
 if [ "$#" -eq 0 ] || [ "$1" == "-h" ]; then
   cat <<HELP
 Usage:
-  homebrew     -- Install Homebrew and packages
+  homebrew     -- Instructions for installing Homebrew and packages
+  plug         -- Installing vim-plug for NeoVim
   symlink      -- Symlink dotfiles to \$HOME
-  neobundle    -- Install NeoBundle for Vim
   change_shell -- Changes shell to Zsh
 HELP
 else
