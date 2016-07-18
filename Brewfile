@@ -1,19 +1,16 @@
 # Taps
 tap 'caskroom/versions'
 tap 'homebrew/dupes'
+tap 'neovim/neovim'
 
 # Brew formulas
 brew 'bash'
 brew 'coreutils'
 brew 'emacs', args: ['with-cocoa']
-brew 'findutils', args: ['with-default-names']
 brew 'gist'
 brew 'git'
-brew 'gnu-sed', args: ['with-default-names']
-brew 'gnu-tar', args: ['with-default-names']
-brew 'grep', args: ['with-default-names']
 brew 'hub'
-brew 'ngrok'
+brew 'neovim/neovim/neovim'
 brew 'p7zip'
 brew 'pandoc'
 brew 'reattach-to-user-namespace'
@@ -34,11 +31,14 @@ cask 'flux'
 cask 'google-chrome-canary'
 cask 'iterm2-beta'
 cask 'karabiner'
+cask 'ngrok'
 cask 'opera'
 cask 'skype'
 cask 'sourcetree'
+cask 'spectacle'
 cask 'textual'
 cask 'the-unarchiver'
+cask 'transmission'
 
 # Install QuickLook plugins
 cask 'betterzipql'
