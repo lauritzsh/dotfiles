@@ -233,6 +233,10 @@ defaults write org.m0k.transmission WarningLegal -bool false
 # Disable Expose animation
 defaults write com.apple.dock expose-animation-duration -int 0; killall Dock
 
+# Disable Bluetooth Setup Assistant
+defaults write /Library/Preferences/com.apple.Bluetooth BluetoothAutoSeekKeyboard '0'
+defaults write /Library/Preferences/com.apple.Bluetooth BluetoothAutoSeekPointingDevice '0'
+
 for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
     "Dock" "Finder" "Mail" "Messages" "Safari" "SizeUp" "SystemUIServer" \
       "Terminal" "Transmission" "Twitter" "iCal"; do
