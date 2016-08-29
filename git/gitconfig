@@ -20,3 +20,5 @@
 	autosetuprebase = always
 [pull]
 	rebase = true
+[hub]
+	host = github.itu.dk
