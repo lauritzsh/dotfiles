@@ -38,3 +38,5 @@ HISTFILE=~/.history
 # Use up/down for searching back in history
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
+
+bindkey -e
