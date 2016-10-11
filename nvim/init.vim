@@ -5,8 +5,10 @@ Plug 'scrooloose/syntastic'
 Plug 'bling/vim-airline'
 Plug 'derekwyatt/vim-scala'
 Plug 'mattn/emmet-vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'posva/vim-vue'
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 call plug#end()
 
@@ -67,3 +69,7 @@ let g:airline_powerline_fonts = 1
 " Markdown
 autocmd FileType markdown setlocal spell textwidth=100 colorcolumn=100
 autocmd FileType markdown let g:airline_section_warning=' '
+
+" TypeScript
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi']
