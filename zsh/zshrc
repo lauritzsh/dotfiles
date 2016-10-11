@@ -35,8 +35,9 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
 
+# Use Emacs keybindings
+bindkey -e
+
 # Use up/down for searching back in history
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
-
-bindkey -e
