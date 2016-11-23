@@ -9,6 +9,7 @@ Plug 'posva/vim-vue'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'mustache/vim-mustache-handlebars'
 
 call plug#end()
 
@@ -76,3 +77,6 @@ autocmd FileType text setlocal spell textwidth=100 colorcolumn=100
 " TypeScript
 let g:tsuquyomi_disable_quickfix = 1
 let g:syntastic_typescript_checkers = ['tsuquyomi']
+
+" Marko
+au BufNewFile,BufRead *.marko set filetype=mustache
