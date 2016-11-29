@@ -6,7 +6,7 @@
 [alias]
 	db  = "!f() { git push origin :refs/heads/$1 && git branch -D $1; }; f"
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue) <%an>%Creset' --abbrev-commit
-	reb = "!f() { git rebase -i HEAD~$1; }; f"
+	reb = "!f() { git rebase HEAD~$1 --interactive; }; f"
 [color]
 	ui = true
 [core]
