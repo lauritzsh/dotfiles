@@ -10,6 +10,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mustache/vim-mustache-handlebars'
+Plug 'neomake/neomake'
 
 call plug#end()
 
@@ -74,9 +75,11 @@ autocmd FileType markdown let g:airline_section_warning=' '
 " Text
 autocmd FileType text setlocal spell textwidth=100 colorcolumn=100
 
+" Neomake
+autocmd! BufWritePost * Neomake
+
 " TypeScript
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi']
+let g:neomake_typescript_enabled_makers = []
 
 " Marko
 au BufNewFile,BufRead *.marko set filetype=mustache
