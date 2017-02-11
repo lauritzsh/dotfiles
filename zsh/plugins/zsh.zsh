@@ -33,16 +33,12 @@ function dot() {
   if [[ "$#" == 0 ]]; then
     cat <<HELP
 Options:
-  brew   -- Upgrades brew formulae
-    skip -- Skip updates
+  brew -- Upgrades brew formulae
 HELP
   fi
 
   if [[ "$1" == "brew" ]]; then
-    if [[ "$2" != "skip" ]]; then
-      brew update
-    fi
-    brew upgrade --all
+    brew upgrade
     brew cleanup
     brew cask cleanup
   fi
