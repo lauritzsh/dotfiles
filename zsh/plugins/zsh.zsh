@@ -43,3 +43,13 @@ HELP
     brew cask cleanup
   fi
 }
+
+function flac2mp3() {
+  find "$1" -iname "*.flac" -exec \
+    ffmpeg -i {} -acodec libmp3lame -ab 320k {}.mp3 \
+  \;
+
+  if [[ "$2" == '-d' || "$2" == '--delete' ]]; then
+    find "$1" -iname "*.flac" -exec trash {} \;
+  fi
+}
