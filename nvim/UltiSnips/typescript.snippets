@@ -1,0 +1,91 @@
+snippet rc
+import React from 'react';
+
+interface Props {}
+
+interface State {}
+
+class $1 extends React.Component<Props, State> {
+  render() {
+    return (
+      ${2:null}
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+snippet frc
+import React from 'react';
+
+interface Props {}
+
+function $1(props: Props) {
+  return (
+  );
+}
+
+export default $1;
+endsnippet
+
+snippet rcn
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+
+import $1 from '$2/$1';
+
+function mapStateToProps(state: any) {
+  return {
+    ...state,
+  };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<any>) {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)($1);
+endsnippet
+
+snippet rcc
+import React from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
+
+//----------
+// Component
+//----------
+interface Props {}
+
+interface State {}
+
+export class $1 extends React.Component<Props, State> {
+  render() {
+    return (
+      ${2:null}
+    );
+  }
+}
+
+//----------
+// Container
+//----------
+function mapStateToProps(state: any) {
+  return {
+    ...state,
+  };
+}
+
+function mapDispatchToProps(dispatch: Dispatch<any>) {
+  return {};
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)($1);
+endsnippet
+
+snippet fn
+function $1($2) {
+  ${3:return ;}
+}
+endsnippet

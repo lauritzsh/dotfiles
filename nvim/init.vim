@@ -11,6 +11,7 @@ Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'neomake/neomake'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -83,3 +84,10 @@ let g:neomake_typescript_enabled_makers = []
 
 " Marko
 au BufNewFile,BufRead *.marko set filetype=mustache
+
+" UltiSnips
+set runtimepath+=~/.config/nvim
+let g:UltiSnipsUsePythonVersion=3
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<c-b>'
+let g:UltiSnipsJumpBackwardTrigger='<c-z>'
