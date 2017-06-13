@@ -67,6 +67,10 @@ silent! call mkdir(expand('~/.config/nvim/backups'), 'p')
 set undodir=~/.config/nvim/backups
 set undofile
 
+" Because I can't type
+command Wa execute "wa"
+command Wq execute "wq"
+
 " vim-airline
 let g:airline_powerline_fonts = 1
 
