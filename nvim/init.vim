@@ -81,6 +81,7 @@ autocmd! BufWritePost * Neomake
 
 " TypeScript
 let g:neomake_typescript_enabled_makers = []
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
 
 " Marko
 au BufNewFile,BufRead *.marko set filetype=mustache
