@@ -16,6 +16,9 @@ alias la='ls -lhAF --color'
 alias vi='nvim'
 alias vim='nvim'
 
+alias f='ag -g'
+alias r='ag'
+
 # Functions
 function mcd() {
   mkdir -p "$1" && cd "$1";
