@@ -11,6 +11,7 @@ Plug 'Quramy/tsuquyomi'
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'neomake/neomake'
+Plug 'elixir-lang/vim-elixir'
 Plug 'SirVer/ultisnips'
 
 call plug#end()
