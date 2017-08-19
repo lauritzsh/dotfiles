@@ -97,3 +97,10 @@ let g:UltiSnipsUsePythonVersion=3
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<c-b>'
 let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+
+" emmet
+let g:user_emmet_settings = {
+\  'typescript' : {
+\    'extends' : 'jsx',
+\  },
+\}
