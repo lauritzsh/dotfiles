@@ -57,10 +57,29 @@ function flac2mp3() {
   fi
 }
 
-ogg2mp3 () {
+function ogg2mp3 () {
   find "$1" -iname "*.ogg" -exec ffmpeg -i {} -acodec libmp3lame -ab 320k {}.mp3 \;
   if [[ "$2" == '-d' || "$2" == '--delete' ]]
   then
     find "$1" -iname "*.ogg" -exec trash {} \;
+  fi
+}
+
+function cut () {
+  if [ "$1" = "-h" ]; then
+    echo "usage: $0 input from to name [where]"
+
+    return
+  fi
+
+  FILE_PATH=$(dirname "$1")
+  FILE_NAME=$(basename "$1")
+  FILE_EXT="${FILE_NAME##*.}"
+  # FILE_NAME="${FILE_NAME%.*}"
+
+  if [ "$FILE_EXT" = "mp4" ]; then
+    ffmpeg -i "$1" -ss "$2" -to "$3" -c copy "${5:-$FILE_PATH}/$4-$FILE_NAME"
+  else
+    ffmpeg -i "$1" -ss "$2" -to "$3" -c:v libx264 -c:a aac -strict experimental -b:a 128k "$FILE_PATH/$4-$FILE_NAME.mp4"
   fi
 }
