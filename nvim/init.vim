@@ -13,6 +13,9 @@ Plug 'mustache/vim-mustache-handlebars'
 Plug 'neomake/neomake'
 Plug 'elixir-lang/vim-elixir'
 Plug 'SirVer/ultisnips'
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'yarn install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql'] }
 
 call plug#end()
 
@@ -85,8 +88,9 @@ autocmd FileType text setlocal spell textwidth=100 colorcolumn=100
 autocmd! BufWritePost * Neomake
 
 " TypeScript
-let g:neomake_typescript_enabled_makers = []
 autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+
+let g:syntastic_typescript_checkers = ['tsuquyomi']
 
 " Marko
 au BufNewFile,BufRead *.marko set filetype=mustache
@@ -104,3 +108,11 @@ let g:user_emmet_settings = {
 \    'extends' : 'jsx',
 \  },
 \}
+
+" JavaScript prettier
+autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.json,*.css,*.scss,*.less,*.graphql PrettierAsync
+
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#trailing_comma = 'all'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#jsx_bracket_same_line = 'false'
