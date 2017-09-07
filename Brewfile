@@ -1,7 +1,6 @@
 # Taps
 tap 'caskroom/versions'
 tap 'homebrew/dupes'
-tap 'neovim/neovim'
 
 # Brew formulas
 brew 'bash'
@@ -10,7 +9,7 @@ brew 'emacs', args: ['with-cocoa']
 brew 'gist'
 brew 'git'
 brew 'hub'
-brew 'neovim/neovim/neovim'
+brew 'neovim'
 brew 'node'
 brew 'p7zip'
 brew 'pandoc'
