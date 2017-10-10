@@ -22,3 +22,5 @@
 	rebase = true
 [hub]
 	host = github.itu.dk
+[rebase]
+	autosquash = true
