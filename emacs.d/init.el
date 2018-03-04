@@ -1,134 +1,111 @@
-;; Getting rid of menu and toolbar
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(scroll-bar-mode -1)
-
-;; Full height
-(add-to-list 'initial-frame-alist `(fullscreen . fullheight))
-(add-to-list 'default-frame-alist `(fullscreen . fullheight))
-;; Highlight paranthesis on hover
-(show-paren-mode 1)
-
-;; Add MELPA to package archives
+;; load package manager
+;; add MELPA and org as package registry
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/"))
+
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives '("org"   . "https://orgmode.org/elpa/") t)
 
 (package-initialize)
 
-;; Helper variables/functions
-(defconst is-osx (eq system-type 'darwin))
+;; disable bell ring
+(setq ring-bell-function 'ignore)
 
-;; Setup use-package
-(if (not (package-installed-p 'use-package))
-    (progn
-      (package-refresh-contents)
-      (package-install 'use-package)))
+;; disable startup screen
+(setq inhibit-startup-message t)
+
+;; disable .#files
+(setq create-lockfiles nil)
+
+;; disable toolbar
+(tool-bar-mode -1)
+
+;; insert newline at end of file
+(setq require-final-newline t)
+
+;; put the custom-set-variables in a different file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file)
+
+;; bootstrap use-package if not installed
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
 (require 'use-package)
 
-;; Implicit `:ensure t'
-(setq use-package-always-ensure t)
+;; move backup files to a temporary directory
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
-;; Theme
-(use-package zenburn-theme)
+(setq org-agenda-files '("/keybase/private/lauritzsh/todos.org"))
 
-;; Highlight paranthesis on hover
-(setq show-paren-style 'parenthesis)
-
-;; Better way to search buffers and files
-(require 'ido)
-(ido-mode t)
-
-;; Install and configure packages
-(when is-osx
-  (use-package exec-path-from-shell))
-
-(use-package fsharp-mode
-  :config
-  (add-hook 'fsharp-mode-hook
-            (lambda ()
-              (define-key fsharp-mode-map (kbd "M-RET") 'fsharp-eval-region))))
-
+;; Vim package
 (use-package evil
+  :ensure t
   :config
-  (evil-mode 1))
+  (evil-mode))
 
-(use-package auto-complete
+;; Org package
+(use-package org
+  :ensure org-plus-contrib
+  :pin org
   :config
-  (ac-config-default))
+  ;; open agenda in current window
+  (setq org-agenda-window-setup (quote current-window))
+  ;; open agenda with C-c a
+  (global-set-key (kbd "C-c a") 'org-agenda)
 
-(use-package whitespace-cleanup-mode)
+  (define-key global-map (kbd "C-c c") 'org-capture)
+  ;; capture todo items using C-c c t
+  (setq org-capture-templates
+	'(("t" "todo" entry (file+headline "/keybase/private/lauritzsh/todos.org" "Tasks")
+	   "* TODO [#A] %?"))))
 
-(use-package markdown-mode)
-
-(use-package org)
-
-(use-package linum-relative
+;; latex package
+(use-package auctex
+  :defer t
   :config
-  (global-linum-mode 1)
-  (setq linum-relative-current-symbol ""))
+  (add-hook 'latex-mode-hook #'auto-fill-mode)
+  ;; required for previewing math with auctex
+  (setenv "LANG" "en_US.UTF-8"))
 
-(use-package inf-ruby)
-(use-package ruby-tools)
-(use-package ruby-end
+;; elixir package
+(use-package alchemist)
+
+;; auto-completion
+(use-package company
+  :ensure t
+  :pin melpa
+  :init
+  (add-hook 'after-init-hook 'global-company-mode))
+
+;; smartparans
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
   :config
-  (setq ruby-end-insert-newline nil))
-(use-package enh-ruby-mode
-  :mode
-  ("\\.rb\\'"    . enh-ruby-mode)
-  ("\\.ru\\'"    . enh-ruby-mode)
-  ("Gemfile"     . enh-ruby-mode)
-  ("Rakefile"    . enh-ruby-mode)
-  ("Vagrantfile" . enh-ruby-mode)
+  (require 'smartparens-config)
+  (smartparens-global-mode 1))
 
+(use-package flx-ido
+  :ensure t
   :config
-  (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
-  (add-hook 'enh-ruby-mode-hook 'ruby-tools-mode)
-  (add-hook 'enh-ruby-mode-hook 'ruby-end-mode))
+  (setq ido-enable-flex-matching t))
 
-(use-package clojure-mode)
-(use-package clojure-mode-extra-font-locking)
-(use-package cider)
-(use-package paredit)
-(use-package rainbow-delimiters
+(use-package projectile
+  :ensure t
   :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  (projectile-mode))
 
-(use-package smex
+(use-package emmet-mode
+  :ensure t
+  :init
+  (add-hook 'sgml-init-hook 'emmet-mode)
+  (add-hook 'css-init-hook 'emmet-mode))
+
+(use-package flycheck
+  :ensure t
   :config
-  (smex-initialize)
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-  (global-set-key (kbd "C-c C-c M-x") 'execute-extended-command))
-
-(use-package magit)
-
-(use-package web-mode
-  :mode
-  ("\\.html?\\'"      . web-mode)
-  ("\\.erb\\'"        . web-mode)
-  ("\\.jsx?\\'"       . web-mode)
-  ("\\.ios.js\\'"     . web-mode)
-  ("\\.android.js\\'" . web-mode)
-
-  :config
-  (setq web-mode-enable-auto-quoting nil)
-  (setq web-mode-content-types-alist
-        '(("jsx" . "\\.jsx\\'")
-          ("jsx" . "\\.ios.js\\'")
-          ("jsx" . "\\.android.js\\'"))))
-
-;; Auto insert matching brackets
-(electric-pair-mode 1)
-
-;; Tabs and spaces
-(setq-default indent-tabs-mode nil)
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-
-;; Move backup files
-(make-directory "~/.emacs.d/backups")
-(setq backup-directory-alist `(("." . "~/.emacs.d/backups")))
-(setq backup-by-copying t)
+  (add-hook 'after-init-hook #'global-flycheck-mode))
