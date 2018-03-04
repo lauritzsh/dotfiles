@@ -32,11 +32,11 @@ brew 'zsh'
 brew 'zsh-syntax-highlighting'
 
 # Install casks
-cask 'boom'
 cask 'bowtie'
 cask 'discord'
 cask 'dropbox'
 cask 'emacs'
+cask 'eqmac'
 cask 'exodus'
 cask 'firefox'
 cask 'flux'
